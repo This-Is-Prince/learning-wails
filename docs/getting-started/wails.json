@@ -1,0 +1,12 @@
+{
+  "name": "getting-started",
+  "outputfilename": "getting-started",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "http://localhost:3000",
+  "author": {
+    "name": "This-Is-Prince",
+    "email": "this.is.kumar.prince@gmail.com"
+  }
+}
