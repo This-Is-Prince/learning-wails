@@ -1,8 +1,9 @@
-import { Greet } from "../wailsjs/go/main/App";
-import { Greet2 } from "../wailsjs/go/main/App2";
+import { Greet, MessageDialog } from "../wailsjs/go/main/App";
+import { Greet2  } from "../wailsjs/go/main/App2";
 import { HelloBro } from '../wailsjs/go/hello/Hello'
+import { BrowserOpenURL, Environment, LogPrint, Quit, WindowCenter, WindowFullscreen, WindowHide, WindowMaximise, WindowMinimise, WindowReload, WindowReloadApp, WindowSetDarkTheme, WindowSetLightTheme, WindowSetSystemDefaultTheme, WindowShow, WindowToggleMaximise, WindowUnfullscreen, WindowUnmaximise, WindowUnminimise } from '../wailsjs/runtime/runtime'
 import './index.css'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface State {
     greet: string;
@@ -33,9 +34,103 @@ function App() {
             })
         })
     }
+    useEffect(() => {
+        Environment().then((obj) => {
+            LogPrint(JSON.stringify(obj));
+        })
+    }, [])
 
     return (
-        <div className="flex flex-col gap-y-5 pb-5">
+        <div className="flex flex-col gap-y-5 py-5">
+            <div className="grid grid-cols-4 gap-5 px-5">
+                <button onClick={() => {
+                    Quit();
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Close
+                </button>
+                <button onClick={() => {
+                    WindowCenter();
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window Center
+                </button>
+                <button onClick={() => {
+                    WindowFullscreen()
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window Full
+                </button>
+                <button onClick={() => {
+                    WindowUnfullscreen();
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window Unfull
+                </button>
+                <button onClick={() => {
+                    WindowReload();
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window Reload
+                </button>
+                <button onClick={() => {
+                    WindowReloadApp();
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window Reload App
+                </button>
+                <button onClick={() => {
+                    WindowSetSystemDefaultTheme();
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window System Default Theme
+                </button>
+                <button onClick={() => {
+                    WindowSetDarkTheme();
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window System Dark Theme
+                </button>
+                <button onClick={() => {
+                    WindowSetLightTheme();
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window System Light Theme
+                </button>
+                <button onClick={() => {
+                    WindowHide();
+                    setTimeout(() => {
+                        WindowShow();
+                    }, 2000)
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window Hide
+                </button>
+                <button onClick={() => {
+                    WindowMaximise();
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window Maximise
+                </button>
+                <button onClick={() => {
+                    WindowUnmaximise();
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window Unmaximise
+                </button>
+                <button onClick={() => {
+                    WindowMinimise();
+                    setTimeout(() => {
+                        WindowUnminimise();
+                    }, 2000)
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window Minimise
+                </button>
+                <button onClick={() => {
+                    WindowToggleMaximise();
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Window Toggle Maximise
+                </button>
+                <button onClick={() => {
+                    BrowserOpenURL("https://google.com");
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Go To Google
+                </button>
+                <button onClick={() => {
+                    MessageDialog("Hello","Bro");
+                }} className="bg-red-600 px-7 py-2 rounded-md text-white">
+                    Display Dialog
+                </button>
+
+            </div>
             <h1 className="font-bold text-xl text-center py-2 italic bg-blue-600 text-white">Hello World</h1>
             <section className="grid grid-cols-2 px-5 gap-x-5">
                 <article className="flex flex-col gap-y-5 text-center">
